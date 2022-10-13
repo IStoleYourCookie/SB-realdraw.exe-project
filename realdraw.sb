@@ -1,0 +1,207 @@
+new:
+
+posx = 1
+posy = -1
+tog = 0
+face = 1
+drawcharfill = "# "
+drawcharclear = ". "
+
+height = TextWindow.ReadNumber()
+width = TextWindow.ReadNumber()
+
+For y = 1 To height
+  For x = 1 To width
+    grid[y][x] = ". "
+  EndFor
+EndFor
+
+tag:
+
+TextWindow.WriteLine("")
+imp = TextWindow.Read()
+
+If imp = "w" Then
+  If  tog = 0 Then
+    posy = posy + 1
+  ElseIf tog = 1 Then
+    grid[-posy][posx] = drawcharfill
+    posy = posy + 1
+  Else
+    grid[-posy][posx] = drawcharclear
+    posy = posy + 1
+  EndIf
+ElseIf imp = "s" Then
+  If  tog = 0 Then
+    posy = posy - 1
+  ElseIf tog = 1 Then
+    grid[-posy][posx] = drawcharfill
+    posy = posy - 1
+  Else
+    grid[-posy][posx] = drawcharclear
+    posy = posy - 1
+  EndIf
+ElseIf imp = "d" Then
+  If  tog = 0 Then
+    posx = posx + 1
+  ElseIf tog = 1 Then
+    grid[-posy][posx] = drawcharfill
+    posx = posx + 1
+  Else
+    grid[-posy][posx] = drawcharclear
+    posx = posx + 1
+  EndIf
+ElseIf imp = "a" Then
+  If  tog = 0 Then
+    posx = posx - 1
+  ElseIf tog = 1 Then
+    grid[-posy][posx] = drawcharfill
+    posx = posx - 1
+  Else
+    grid[-posy][posx] = drawcharclear
+    posx = posx - 1
+  EndIf
+ElseIf imp = "e" Then
+  If drawcharfill = "# " Then
+    drawcharfill = "@ "
+  ElseIf drawcharfill = "@ " Then
+    drawcharfill = "O "
+  ElseIf drawcharfill = "O " Then
+    drawcharfill = "# "
+  EndIf
+  grid[-posy][posx] = drawcharfill
+ElseIf imp = "q" Then
+  If drawcharclear = ". " Then
+    drawcharclear = "* "
+  ElseIf drawcharclear = "* " Then
+    drawcharclear = "/ "
+  ElseIf drawcharclear = "/ " Then
+    drawcharclear = ". "
+  EndIf
+  grid[-posy][posx] = drawcharclear
+ElseIf imp = "f" Then
+  tog = 1
+ElseIf imp = "c" Then
+  tog = 2
+ElseIf imp = "v" Then
+  tog = 0
+ElseIf imp = "save" Then
+  name = TextWindow.Read()
+  File.WriteContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, "")
+  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, width)
+  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, height)
+  For y = 1 To height
+    For x = 1 To width
+      File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, grid[y][x])
+    EndFor
+  EndFor
+ElseIf imp = "load" Then
+  name = TextWindow.Read()
+  l = 1
+  width = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, 1)
+  height = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, 2)
+  For y = 1 To height
+    For x = 1 To width
+      grid[y][x] = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, l + 2)
+      l = l + 1
+    EndFor
+  EndFor
+ElseIf imp = "new" Then
+  Goto new
+ElseIf imp = "ant" Then
+  end = TextWindow.Read()
+  stp = 0
+  While imp = "ant" And stp <> end
+    If grid[-posy][posx] = ". " Or grid[-posy][posx] = "" Or grid[-posy][posx] = "  " Or grid[-posy][posx] = "* " Or grid[-posy][posx] = "/ " Then
+      If face = 1 Then
+        face = 4
+      ElseIf face = 2 Then
+        face = 1
+      ElseIf face = 3 Then
+        face = 2
+      ElseIf face = 4 Then
+        face = 3
+      EndIf
+      grid[-posy][posx] = drawcharfill
+    ElseIf grid[-posy][posx] = "# " Or grid[-posy][posx] = "@ " Or grid[-posy][posx] = "O " Then
+      If face = 1 Then
+        face = 2
+      ElseIf face = 2 Then
+        face = 3
+      ElseIf face = 3 Then
+        face = 4
+      ElseIf face = 4 Then
+        face = 1
+      EndIf
+        grid[-posy][posx] = drawcharclear
+    EndIf
+    If face = 1 Then
+        posy = posy + 1
+    ElseIf face = 2 Then
+        posx = posx + 1
+    ElseIf face = 3 Then
+        posy = posy - 1
+    ElseIf face = 4 Then
+        posx = posx - 1
+    EndIf
+    For y = 1 To height
+      For x = 1 To width
+        If y = -posy And x = posx Then
+          TextWindow.Write("X ")
+        Else
+          TextWindow.Write(grid[y][x])
+        EndIf
+      EndFor
+        TextWindow.WriteLine("")
+    EndFor
+    stp = stp + 1
+    TextWindow.WriteLine(stp)
+  EndWhile
+ElseIf imp = "negate" Then
+  For y = 1 To height
+    For x = 1 To width
+      If grid[y][x] = ". " Or grid[y][x] = "  " Or grid[y][x] = ", " Or grid[y][x] = "* " Or grid[y][x] = "/ " Then
+        grid[y][x] = drawcharfill
+      ElseIf grid[y][x] = "# " Or grid[y][x] = "@ " Or grid[y][x] = "O " Then
+        grid[y][x] = drawcharclear
+      EndIf
+    EndFor
+  EndFor
+ElseIf imp = "set" Then
+  height = TextWindow.Read()
+  width = TextWindow.Read()
+  For y = 1 To height
+    For x = 1 To width
+      If grid[y][x] = "" Then
+        grid[y][x] = "  "
+      EndIf
+    EndFor
+  EndFor
+ElseIf imp = "exp_save" Then
+  name = TextWindow.Read()
+  File.WriteContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, "")
+  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, Array.GetItemCount(grid))
+  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, Array.GetItemCount(grid))
+  For y = 1 To Array.GetItemCount(grid)
+    For x = 1 To Array.GetItemCount(grid)
+      File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, grid[y][x])
+    EndFor
+  EndFor
+ElseIf imp = "set_ant_face" Then
+  face = TextWindow.ReadNumber()
+EndIf
+
+TextWindow.WriteLine(posx + ", " + -posy)
+
+For y = 1 To height
+  For x = 1 To width
+    If y = -posy And x = posx Then
+      TextWindow.Write("X ")
+    Else
+      TextWindow.Write(grid[y][x])
+    EndIf
+  EndFor
+  TextWindow.WriteLine("")
+EndFor
+
+Goto tag
