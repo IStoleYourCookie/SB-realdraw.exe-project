@@ -1,6 +1,8 @@
 # SB-realdraw.exe-project
 A Github repository for my SB (small basic) code
 
+This is a console-based primitive drawing application capable of saving ang loading files, aswell as simulating Langton's ant
+
 You can compile the code online at 
 
 https://superbasic-v2.azurewebsites.net/ 
