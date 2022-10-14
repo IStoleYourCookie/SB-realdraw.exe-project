@@ -47,6 +47,10 @@ set_ant_face: sets Langon's ant direction, will ask for a number(input should be
 
 ---------------------------
 Langton's ant facing system:        (X is the ant)
+
                               3
+                              
                             4 X 2
+                            
                               1
+                              
