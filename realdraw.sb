@@ -87,22 +87,22 @@ ElseIf imp = "v" Then
   tog = 0
 ElseIf imp = "save" Then
   name = TextWindow.Read()
-  File.WriteContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, "")
-  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, width)
-  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, height)
+  File.WriteContents("C:\" + name, "")
+  File.AppendContents("C:\" + name, width)
+  File.AppendContents("C:\" + name, height)
   For y = 1 To height
     For x = 1 To width
-      File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, grid[y][x])
+      File.AppendContents("C:\" + name, grid[y][x])
     EndFor
   EndFor
 ElseIf imp = "load" Then
   name = TextWindow.Read()
   l = 1
-  width = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, 1)
-  height = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, 2)
+  width = File.ReadLine("C:\" + name, 1)
+  height = File.ReadLine("C:\" + name, 2)
   For y = 1 To height
     For x = 1 To width
-      grid[y][x] = File.ReadLine("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, l + 2)
+      grid[y][x] = File.ReadLine("C:\" + name, l + 2)
       l = l + 1
     EndFor
   EndFor
@@ -179,12 +179,12 @@ ElseIf imp = "set" Then
   EndFor
 ElseIf imp = "exp_save" Then
   name = TextWindow.Read()
-  File.WriteContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, "")
-  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, Array.GetItemCount(grid))
-  File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, Array.GetItemCount(grid))
+  File.WriteContents("C:\" + name, "")
+  File.AppendContents("C:\" + name, Array.GetItemCount(grid))
+  File.AppendContents("C:\" + name, Array.GetItemCount(grid))
   For y = 1 To Array.GetItemCount(grid)
     For x = 1 To Array.GetItemCount(grid)
-      File.AppendContents("C:\Users\szeke_w6a7rza\Desktop\LOGFILES\" + name, grid[y][x])
+      File.AppendContents("C:\" + name, grid[y][x])
     EndFor
   EndFor
 ElseIf imp = "set_ant_face" Then
