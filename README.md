@@ -1,7 +1,7 @@
 # SB-realdraw.exe-project
 A Github repository for my SB (small basic) code
 
-This is a console-based primitive drawing application capable of saving ang loading files, aswell as simulating Langton's ant
+This is a console-based primitive drawing application capable of saving and loading files, aswell as simulating Langton's ant
 
 You can compile the code online at 
 
@@ -42,3 +42,10 @@ save: saves the visible space in a simple .txt format to C:\ directory, will ask
 exp_save: an experimental save procedure that tries to save not just the visible space, but the entire positive-positive quadrant
 
 load: loads a savefile(or any file, that has two numbers as the first two rows, because the save format works like that), will ask for which file would you like to load
+
+set_ant_face: sets Langon's ant direction, will ask for a number(input should be 1, 2, 3 or 4, if not, the ant will not move, only invert the cell beneath it)
+---------------------------
+Langton's ant facing system:        (X is the ant)
+                              3
+                            4 X 2
+                              1
