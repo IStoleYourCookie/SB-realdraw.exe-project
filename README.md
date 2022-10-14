@@ -44,6 +44,7 @@ exp_save: an experimental save procedure that tries to save not just the visible
 load: loads a savefile(or any file, that has two numbers as the first two rows, because the save format works like that), will ask for which file would you like to load
 
 set_ant_face: sets Langon's ant direction, will ask for a number(input should be 1, 2, 3 or 4, if not, the ant will not move, only invert the cell beneath it)
+
 ---------------------------
 Langton's ant facing system:        (X is the ant)
                               3
