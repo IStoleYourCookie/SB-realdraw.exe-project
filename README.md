@@ -1,7 +1,7 @@
 # SB-realdraw.exe-project
 A Github repository for my SB (small basic) code
 
-This is a console-based primitive drawing application capable of saving and loading files, aswell as simulating Langton's ant
+This is a console-based primitive drawing application capable of saving and loading files, aswell as simulating Langton's ant.
 
 You can compile the code online at 
 
@@ -25,7 +25,7 @@ d: moves the cursor right
 
 e: draws a 'fill' character, and cycles between those 'fill' characters
 
-q: draws a 'clear' character, and cycles between those 'cleat' characters
+q: draws a 'clear' character, and cycles between those 'clear' characters
 
 f: turns on the fill toggle, uses the current fill character
 
